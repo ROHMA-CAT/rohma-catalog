@@ -4,26 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ROHMA Admin</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   <script>
-    // Handle invite and recovery tokens before CMS loads
-    if (window.location.hash) {
-      const hash = window.location.hash;
-      if (hash.includes('invite_token') || hash.includes('recovery_token')) {
-        // Move token to the root page so identity widget can handle it
-        window.location.href = '/' + hash;
-      }
+    // Process invite/recovery tokens BEFORE loading CMS
+    var hash = window.location.hash;
+    if (hash && (hash.indexOf('invite_token') > -1 || hash.indexOf('recovery_token') > -1)) {
+      var token = hash.split('=')[1];
+      var type = hash.indexOf('invite_token') > -1 ? 'invite' : 'recovery';
+      window.netlifyIdentity.open(type);
+      window.netlifyIdentity.on('login', function() {
+        document.location.href = '/admin/';
+      });
+    } else {
+      // Normal CMS load
+      var script = document.createElement('script');
+      script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+      document.body.appendChild(script);
     }
-    window.netlifyIdentity && window.netlifyIdentity.on('init', function(user) {
-      if (!user) {
-        window.netlifyIdentity.on('login', function() {
-          document.location.href = '/admin/';
-        });
-      }
-    });
   </script>
 </body>
 </html>
