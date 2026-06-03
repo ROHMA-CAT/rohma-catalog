@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>ROHMA — Login</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    body{margin:0;font-family:sans-serif;background:#1E1610;display:flex;align-items:center;justify-content:center;min-height:100vh}
+  </style>
+</head>
+<body>
+<script>
+  window.netlifyIdentity.open();
+  window.netlifyIdentity.on("login", function(user) {
+    window.location.href = "/admin/";
+  });
+</script>
+</body>
+</html>
