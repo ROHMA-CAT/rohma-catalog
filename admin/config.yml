@@ -1,0 +1,106 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+locale: "es"
+
+collections:
+  - name: "muebles"
+    label: "Muebles / Furniture"
+    label_singular: "Mueble"
+    folder: "_data/muebles"
+    create: true
+    slug: "{{fields.id}}"
+    identifier_field: id
+    summary: "{{fields.name_en}} · {{fields.id}}"
+    fields:
+      - label: "ID de pieza (ej: ROH-001)"
+        name: id
+        widget: string
+        hint: "Formato recomendado: ROH-001, ROH-002, etc. Debe ser único."
+
+      - label: "Nombre en inglés"
+        name: name_en
+        widget: string
+        hint: "Ej: Dining Table — Mesquite"
+
+      - label: "Nombre en español"
+        name: name_es
+        widget: string
+        hint: "Ej: Mesa de Comedor — Mezquite"
+
+      - label: "Categoría"
+        name: category
+        widget: select
+        options:
+          - { label: "Dining Room / Comedor", value: "Dining Room" }
+          - { label: "Living Room / Sala", value: "Living Room" }
+          - { label: "Bedroom / Recámara", value: "Bedroom" }
+          - { label: "Outdoor / Exterior", value: "Outdoor" }
+          - { label: "Kitchen / Cocina", value: "Kitchen" }
+          - { label: "Accessories / Accesorios", value: "Accessories" }
+
+      - label: "Madera (inglés)"
+        name: wood_en
+        widget: string
+        hint: "Ej: Sonoran Mesquite, hand-selected"
+
+      - label: "Madera (español)"
+        name: wood_es
+        widget: string
+        hint: "Ej: Mezquite Sonorense, seleccionado a mano"
+
+      - label: "Descripción corta (inglés)"
+        name: desc_en
+        widget: text
+        required: false
+        hint: "Opcional. Descripción breve del mueble."
+
+      - label: "Descripción corta (español)"
+        name: desc_es
+        widget: text
+        required: false
+
+      - label: "Foto principal"
+        name: image
+        widget: image
+        hint: "Foto del mueble terminado. Se sube directo desde tu celular o compu."
+
+      - label: "Etapas de fabricación documentadas"
+        name: stages
+        widget: number
+        default: 6
+        value_type: int
+        min: 1
+        max: 12
+
+      - label: "Fotos del proceso (galería)"
+        name: process_images
+        widget: list
+        required: false
+        hint: "Sube aquí las fotos de cada etapa del proceso de fabricación."
+        field:
+          label: Foto
+          name: image
+          widget: image
+
+      - label: "Video del proceso (YouTube URL)"
+        name: video_url
+        widget: string
+        required: false
+        hint: "Pega aquí el link de YouTube del video del proceso. Ej: https://youtube.com/watch?v=..."
+
+      - label: "Vendido"
+        name: sold
+        widget: boolean
+        default: false
+
+      - label: "Fecha de creación"
+        name: date
+        widget: datetime
+        default: ""
+        date_format: "YYYY-MM-DD"
+        time_format: false
