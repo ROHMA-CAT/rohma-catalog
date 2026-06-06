@@ -155,14 +155,39 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
 .btn-qr:hover{border-color:var(--gold);background:rgba(184,135,74,.08)}
 .copy-msg{font-size:.72rem;color:var(--gold);margin-top:.4rem;display:none}
 
+/* PIECE PROCESS SECTION */
 .piece-process{padding:3rem 2.5rem;background:var(--bg)}
 .piece-process .sh{margin-bottom:2rem}
+
+/* PROCESS GALLERY — multiple photos */
 .process-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
-.process-photo{border-radius:4px;overflow:hidden;aspect-ratio:4/3;background:#E8DDD0}
-.process-photo img{width:100%;height:100%;object-fit:cover}
-.video-wrap{margin-top:1.5rem}
+.process-photo{border-radius:4px;overflow:hidden;aspect-ratio:4/3;background:#E8DDD0;cursor:pointer;position:relative}
+.process-photo img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.process-photo:hover img{transform:scale(1.05)}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(14,10,6,.92);align-items:center;justify-content:center;padding:1.5rem}
+.lightbox.open{display:flex}
+.lightbox-inner{position:relative;max-width:90vw;max-height:90vh}
+.lightbox-inner img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:4px;display:block}
+.lightbox-close{position:absolute;top:-2rem;right:0;background:none;border:none;color:var(--gold);font-size:1.5rem;cursor:pointer;line-height:1}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(184,135,74,.2);border:.5px solid rgba(184,135,74,.4);color:var(--gold);border-radius:3px;padding:.4rem .7rem;font-size:1.1rem;cursor:pointer;transition:background .2s;line-height:1}
+.lightbox-nav:hover{background:rgba(184,135,74,.4)}
+.lightbox-prev{left:-3rem}
+.lightbox-next{right:-3rem}
+.lightbox-counter{position:absolute;bottom:-1.8rem;left:50%;transform:translateX(-50%);font-size:.7rem;color:var(--stone);letter-spacing:.1em}
+
+/* VIDEOS */
+.videos-section{margin-top:1.5rem}
+.video-item{margin-bottom:1.5rem}
+.video-label{font-size:.78rem;color:var(--muted);letter-spacing:.06em;margin-bottom:.5rem;font-style:italic;text-transform:uppercase}
+.video-wrap{}
 .video-embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:4px;background:#1E1610}
 .video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.drive-btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--gold);color:var(--dark);padding:.7rem 1.6rem;border-radius:3px;font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+.drive-btn:hover{background:var(--gold-light)}
+.drive-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+
 .no-process{padding:2rem;background:var(--cream);border:.5px solid var(--border);border-radius:4px;text-align:center;color:var(--muted);font-size:.85rem;font-style:italic}
 
 @media(max-width:768px){
@@ -178,6 +203,8 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
   .qr-mockup{display:none}
   .piece-hero{padding:2rem 1.2rem}
   .piece-process{padding:2rem 1.2rem}
+  .lightbox-prev{left:-.5rem}
+  .lightbox-next{right:-.5rem}
 }
 </style>
 </head>
@@ -186,6 +213,17 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
 <div class="lang-toggle">
   <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
   <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightboxDirect()">✕</button>
+    <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+    <img id="lightbox-img" src="" alt=""/>
+    <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">›</button>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
 </div>
 
 <!-- MAIN CATALOG -->
@@ -212,7 +250,7 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
       <div class="hero-pillars">
         <div class="hero-pillar"><div class="hero-pillar-dot"></div><p class="hero-pillar-text" data-en="Solid native wood, responsibly sourced" data-es="Madera maciza nativa, responsablemente obtenida">Solid native wood, responsibly sourced</p></div>
         <div class="hero-pillar"><div class="hero-pillar-dot"></div><p class="hero-pillar-text" data-en="Traditional joinery — no hidden screws" data-es="Ensambles tradicionales — sin tornillos ocultos">Traditional joinery — no hidden screws</p></div>
-        <div class="hero-pillar"><div class="hero-pillar-dot"></div><p class="hero-pillar-text" data-en="Each piece individually crafted and numbered" data-es="Cada pieza elaborada individualmente y numerada">Each piece elaborada individualmente y numerada</p></div>
+        <div class="hero-pillar"><div class="hero-pillar-dot"></div><p class="hero-pillar-text" data-en="Each piece individually crafted and numbered" data-es="Cada pieza elaborada individualmente y numerada">Each piece individually crafted and numbered</p></div>
         <div class="hero-pillar"><div class="hero-pillar-dot"></div><p class="hero-pillar-text" data-en="Full process documented via QR" data-es="Proceso completo documentado en el QR">Full process documented via QR</p></div>
         <div class="hero-pillar"><div class="hero-pillar-dot"></div><p class="hero-pillar-text" data-en="Built to last generations" data-es="Construido para durar generaciones">Built to last generations</p></div>
       </div>
@@ -224,7 +262,7 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
     <div class="m-dot"></div>
     <div class="m-item"><span class="m-text" data-en="One of a kind" data-es="Pieza única">One of a kind</span></div>
     <div class="m-dot"></div>
-    <div class="m-item"><span class="m-text" data-en="Solid wood only" data-es="Solo madera maciza">Solid wood only</span></div>
+    <div class="m-item"><span class="m-text" data-en="Solid mesquite wood" data-es="Solo mezquite macizo">Solid mesquite wood</span></div>
     <div class="m-dot"></div>
     <div class="m-item"><span class="m-text" data-en="Full process documented" data-es="Proceso documentado">Full process documented</span></div>
     <div class="m-dot"></div>
@@ -345,10 +383,6 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
 <script>
 // ─────────────────────────────────────────────
 // CATALOG DATA
-// This is populated automatically from the
-// _data/muebles/ folder when deployed.
-// For the live site, JavaScript reads the YML
-// files via a generated JSON. Below is a demo.
 // ─────────────────────────────────────────────
 const CATALOG = window.CATALOG_DATA || [
   {
@@ -363,10 +397,49 @@ const CATALOG = window.CATALOG_DATA || [
     image:"/images/whatsapp-image-2026-06-03-at-8.31.22-am.jpeg",
     stages:6,
     process_images:[],
-    video_url:"https://drive.google.com/file/d/1MPBnx2mCOj-sLjZeOE5oTaGH_0JhsB7m/view?usp=drive_link",
+    process_videos:[
+      { url:"https://drive.google.com/file/d/1MPBnx2mCOj-sLjZeOE5oTaGH_0JhsB7m/view?usp=drive_link", label:"" }
+    ],
     sold:false
   }
 ];
+
+// ─────────────────────────────────────────────
+// LIGHTBOX
+// ─────────────────────────────────────────────
+let lightboxImages = [];
+let lightboxIndex  = 0;
+
+function openLightbox(images, index){
+  lightboxImages = images;
+  lightboxIndex  = index;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightboxDirect(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeLightbox(e){
+  if(e.target === document.getElementById('lightbox')) closeLightboxDirect();
+}
+function lightboxNav(dir){
+  lightboxIndex = (lightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
+  updateLightbox();
+}
+function updateLightbox(){
+  document.getElementById('lightbox-img').src = lightboxImages[lightboxIndex];
+  document.getElementById('lightbox-counter').textContent =
+    lightboxImages.length > 1 ? (lightboxIndex+1) + ' / ' + lightboxImages.length : '';
+}
+document.addEventListener('keydown', e=>{
+  const lb = document.getElementById('lightbox');
+  if(!lb.classList.contains('open')) return;
+  if(e.key==='Escape') closeLightboxDirect();
+  if(e.key==='ArrowRight') lightboxNav(1);
+  if(e.key==='ArrowLeft')  lightboxNav(-1);
+});
 
 // ─────────────────────────────────────────────
 // LANGUAGE
@@ -392,48 +465,87 @@ function showCatalog(){
   window.scrollTo(0,0);
   history.pushState({},'','/');
 }
+
 function showPiece(id){
   const item = CATALOG.find(i=>i.id===id);
   if(!item) return;
   document.getElementById('main').classList.add('hidden');
   const pp = document.getElementById('piece-page');
   pp.classList.add('active');
-  // fill data
-  document.getElementById('piece-id').textContent = item.id;
+
+  // basic info
+  document.getElementById('piece-id').textContent   = item.id;
   document.getElementById('piece-name').textContent = item['name_'+lang];
   document.getElementById('piece-wood').textContent = '🪵 ' + item['wood_'+lang];
   document.getElementById('piece-desc').textContent = item['desc_'+lang] || '';
   const url = window.location.origin + '/piece/' + item.id;
   document.getElementById('piece-qr-url').textContent = url;
-  // image
+
+  // main image
   const imgWrap = document.getElementById('piece-img-wrap');
   if(item.image){
     imgWrap.innerHTML = `<img src="${item.image}" alt="${item['name_'+lang]}" onerror="this.parentElement.innerHTML='<div class=piece-img-placeholder>🪑</div>'"/>`;
   } else {
     imgWrap.innerHTML = '<div class="piece-img-placeholder">🪑</div>';
   }
-  // process gallery
+
+  // process gallery — multiple photos with lightbox
   const gallery = document.getElementById('piece-gallery');
-  if(item.process_images && item.process_images.length){
+  const photos = (item.process_images || []).map(img => img.image || img).filter(Boolean);
+  if(photos.length){
     gallery.innerHTML = '<div class="process-gallery">' +
-      item.process_images.map(img=>`<div class="process-photo"><img src="${img.image||img}" alt="Process"/></div>`).join('') +
+      photos.map((src, idx) =>
+        `<div class="process-photo" onclick="openLightbox(${JSON.stringify(photos).replace(/"/g,'&quot;')}, ${idx})">
+           <img src="${src}" alt="Proceso ${idx+1}" loading="lazy"/>
+         </div>`
+      ).join('') +
       '</div>';
   } else {
-    gallery.innerHTML = `<div class="no-process"><em data-en="Process photos will appear here once uploaded from the admin panel." data-es="Las fotos del proceso aparecerán aquí una vez subidas desde el panel de administración.">${lang==='en'?'Process photos will appear here once uploaded from the admin panel.':'Las fotos del proceso aparecerán aquí una vez subidas desde el panel de administración.'}</em></div>`;
+    gallery.innerHTML = `<div class="no-process"><em>${lang==='en'
+      ? 'Process photos will appear here once uploaded from the admin panel.'
+      : 'Las fotos del proceso aparecerán aquí una vez subidas desde el panel de administración.'
+    }</em></div>`;
   }
-  // video
+
+  // videos — multiple, YouTube or Drive
   const videoDiv = document.getElementById('piece-video');
-  if(item.video_url){
-    const ytId = getYouTubeId(item.video_url);
-    if(ytId){
-      videoDiv.innerHTML = `<div class="video-wrap"><div class="video-embed"><iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe></div></div>`;
-    } else {
-      videoDiv.innerHTML = '';
-    }
-  } else { videoDiv.innerHTML = ''; }
+  // backward-compat: support old single video_url field
+  const videos = item.process_videos && item.process_videos.length
+    ? item.process_videos
+    : (item.video_url ? [{ url: item.video_url, label: '' }] : []);
+
+  if(videos.length){
+    videoDiv.innerHTML = '<div class="videos-section">' +
+      videos.map(v => {
+        const vurl  = v.url || v;
+        const vlabel = v.label ? `<p class="video-label">${v.label}</p>` : '';
+        const ytId  = getYouTubeId(vurl);
+        if(ytId){
+          return `<div class="video-item">${vlabel}
+            <div class="video-wrap"><div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe>
+            </div></div>
+          </div>`;
+        }
+        if(getDriveId(vurl)){
+          return `<div class="video-item">${vlabel}
+            <a class="drive-btn" href="${vurl}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              ${lang==='en' ? 'Watch process video' : 'Ver video del proceso'}
+            </a>
+          </div>`;
+        }
+        return '';
+      }).join('') +
+    '</div>';
+  } else {
+    videoDiv.innerHTML = '';
+  }
+
   window.scrollTo(0,0);
   history.pushState({},'','/piece/'+item.id);
-  // re-apply lang to piece page
   document.querySelectorAll('[data-en]').forEach(el=>{
     const val = el.getAttribute('data-'+lang);
     if(val) el.innerHTML = val;
@@ -441,7 +553,13 @@ function showPiece(id){
 }
 
 function getYouTubeId(url){
+  if(!url) return null;
   const m = url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+function getDriveId(url){
+  if(!url) return null;
+  const m = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
   return m ? m[1] : null;
 }
 
@@ -470,9 +588,8 @@ const CATS_ES = ['Todos','Comedor','Sala','Recámara','Exterior','Cocina','Acces
 
 function renderFilters(){
   const bar = document.getElementById('filter-bar');
-  // get only categories that exist in catalog
   const existing = new Set(CATALOG.map(i=>i.category));
-  const labels = CATS_EN.filter((c,i)=>c==='All'||existing.has(c));
+  const labels = CATS_EN.filter(c=>c==='All'||existing.has(c));
   bar.innerHTML = '';
   labels.forEach(cat=>{
     const idx = CATS_EN.indexOf(cat);
@@ -490,7 +607,7 @@ function renderFilters(){
 }
 
 function renderCatalog(filter){
-  const grid = document.getElementById('catalog-grid');
+  const grid  = document.getElementById('catalog-grid');
   const items = filter==='All' ? CATALOG : CATALOG.filter(i=>i.category===filter);
   if(!items.length){
     grid.innerHTML = `<div class="empty-state"><p>${lang==='en'?'No pieces in this category yet.':'No hay piezas en esta categoría aún.'}</p></div>`;
@@ -498,13 +615,13 @@ function renderCatalog(filter){
   }
   grid.innerHTML = '';
   items.forEach(item=>{
-    const name = item['name_'+lang];
-    const wood = item['wood_'+lang];
-    const catIdx = CATS_EN.indexOf(item.category);
-    const catLabel = lang==='en' ? item.category : (CATS_ES[catIdx]||item.category);
+    const name      = item['name_'+lang];
+    const wood      = item['wood_'+lang];
+    const catIdx    = CATS_EN.indexOf(item.category);
+    const catLabel  = lang==='en' ? item.category : (CATS_ES[catIdx]||item.category);
     const uniqueLabel = lang==='en' ? 'One of a kind' : 'Pieza única';
     const stagesLabel = lang==='en' ? 'stages' : 'etapas';
-    const soldLabel = lang==='en' ? 'SOLD' : 'VENDIDO';
+    const soldLabel   = lang==='en' ? 'SOLD' : 'VENDIDO';
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
@@ -544,9 +661,8 @@ function handleRoute(){
   const path = window.location.pathname;
   const m = path.match(/\/piece\/([A-Z0-9-]+)/);
   if(m){
-    const id = m[1];
-    const item = CATALOG.find(i=>i.id===id);
-    if(item){ showPiece(id); return; }
+    const item = CATALOG.find(i=>i.id===m[1]);
+    if(item){ showPiece(m[1]); return; }
   }
   showCatalog();
 }
@@ -556,7 +672,6 @@ renderQRPattern();
 renderFilters();
 renderCatalog('All');
 handleRoute();
-
 window.addEventListener('popstate', handleRoute);
 </script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
