@@ -119,15 +119,6 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
 .piece-name{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--cream);line-height:1.15;margin-bottom:1rem}
 .piece-wood{font-size:.88rem;color:var(--stone);margin-bottom:1.2rem}
 .piece-desc{font-size:.9rem;color:var(--stone);line-height:1.8;font-weight:300;margin-bottom:2rem}
-.piece-qr-box{background:rgba(184,135,74,.08);border:.5px solid rgba(184,135,74,.25);border-radius:4px;padding:1.2rem}
-.piece-qr-title{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;font-weight:500}
-.piece-qr-url{font-family:monospace;font-size:.8rem;color:var(--cream);margin-bottom:.8rem;word-break:break-all}
-.piece-qr-actions{display:flex;gap:.6rem;flex-wrap:wrap}
-.btn-copy{background:var(--gold);color:var(--dark);border:none;padding:.55rem 1.2rem;font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;cursor:pointer;font-family:'Jost',sans-serif;transition:background .2s}
-.btn-copy:hover{background:var(--gold-light)}
-.btn-qr{background:transparent;color:var(--gold);border:.5px solid rgba(184,135,74,.4);padding:.55rem 1.2rem;font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s}
-.btn-qr:hover{border-color:var(--gold);background:rgba(184,135,74,.08)}
-.copy-msg{font-size:.72rem;color:var(--gold);margin-top:.4rem;display:none}
 .piece-process{padding:3rem 2.5rem;background:var(--bg)}
 .piece-process .sh{margin-bottom:2rem}
 .process-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
@@ -313,15 +304,6 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
         <h1 class="piece-name" id="piece-name"></h1>
         <p class="piece-wood" id="piece-wood"></p>
         <p class="piece-desc" id="piece-desc"></p>
-        <div class="piece-qr-box">
-          <p class="piece-qr-title" data-en="QR & Share" data-es="QR y Compartir">QR & Share</p>
-          <p class="piece-qr-url" id="piece-qr-url"></p>
-          <div class="piece-qr-actions">
-            <button class="btn-copy" onclick="copyLink()" data-en="Copy link" data-es="Copiar enlace">Copy link</button>
-            <button class="btn-qr" onclick="openQRGenerator()" data-en="Generate QR" data-es="Generar QR">Generate QR</button>
-          </div>
-          <p class="copy-msg" id="copy-msg" data-en="✓ Link copied!" data-es="✓ ¡Enlace copiado!">✓ Link copied!</p>
-        </div>
       </div>
     </div>
   </div>
@@ -417,8 +399,6 @@ function showPiece(id){
   document.getElementById('piece-name').textContent = item['name_'+lang];
   document.getElementById('piece-wood').textContent = '🪵 ' + item['wood_'+lang];
   document.getElementById('piece-desc').textContent = item['desc_'+lang] || '';
-  const url = window.location.origin + '/piece/' + item.id;
-  document.getElementById('piece-qr-url').textContent = url;
   const imgWrap = document.getElementById('piece-img-wrap');
   imgWrap.innerHTML = item.image
     ? `<img src="${item.image}" alt="${item['name_'+lang]}" onerror="this.parentElement.innerHTML='<div class=piece-img-placeholder>🪑</div>'"/>`
@@ -475,19 +455,6 @@ function getDriveId(url){
   if(!url) return null;
   const m = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
   return m ? m[1] : null;
-}
-
-function copyLink(){
-  const url = document.getElementById('piece-qr-url').textContent;
-  navigator.clipboard.writeText(url).then(()=>{
-    const msg = document.getElementById('copy-msg');
-    msg.style.display = 'block';
-    setTimeout(()=> msg.style.display='none', 2500);
-  });
-}
-function openQRGenerator(){
-  const url = encodeURIComponent(document.getElementById('piece-qr-url').textContent);
-  window.open('https://qr.io/?data='+url, '_blank');
 }
 
 let currentFilter = 'All';
@@ -578,7 +545,6 @@ function handleRoute(){
   showCatalog();
 }
 
-// Handle redirect from 404.html
 const redirectPath = new URLSearchParams(window.location.search).get("redirect");
 if(redirectPath) { history.replaceState({}, "", redirectPath); }
 
