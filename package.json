@@ -1,0 +1,11 @@
+{
+  "name": "rohma-catalog",
+  "version": "1.0.0",
+  "description": "ROHMA handcrafted furniture catalog",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3"
+  }
+}
