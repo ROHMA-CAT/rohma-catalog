@@ -279,7 +279,7 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
         <div class="qr-box"><div class="qr-pat" id="qr-pat"></div></div>
         <p class="qr-label" data-en="Dining Table<br>Mesquite" data-es="Mesa de Comedor<br>Mezquite">Dining Table<br>Mesquite</p>
         <p class="qr-sub">ROH-001</p>
-        <p class="qr-url-text">rohma.netlify.app/piece/ROH-001</p>
+        <p class="qr-url-text">rohma.642cowork.com/piece/ROH-001</p>
       </div>
     </div>
   </section>
@@ -337,10 +337,6 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
 </div>
 
 <script>
-// ─────────────────────────────────────────────
-// CATALOG — loaded from catalog.json (generated
-// by build.js at deploy time via Netlify)
-// ─────────────────────────────────────────────
 let CATALOG = [];
 let pendingRoute = null;
 
@@ -353,15 +349,11 @@ fetch('/catalog.json')
     if(pendingRoute) { showPiece(pendingRoute); pendingRoute = null; }
   })
   .catch(() => {
-    // fallback while build script is not yet set up
-    console.warn('catalog.json not found — using empty catalog');
+    console.warn('catalog.json not found');
     renderFilters();
     renderCatalog(currentFilter);
   });
 
-// ─────────────────────────────────────────────
-// LIGHTBOX
-// ─────────────────────────────────────────────
 let lightboxImages = [];
 let lightboxIndex  = 0;
 
@@ -396,9 +388,6 @@ document.addEventListener('keydown', e => {
   if(e.key==='ArrowLeft')   lightboxNav(-1);
 });
 
-// ─────────────────────────────────────────────
-// LANGUAGE
-// ─────────────────────────────────────────────
 let lang = 'en';
 function setLang(l){
   lang = l;
@@ -412,9 +401,6 @@ function setLang(l){
   renderCatalog(currentFilter);
 }
 
-// ─────────────────────────────────────────────
-// VIEWS
-// ─────────────────────────────────────────────
 function showCatalog(){
   document.getElementById('main').classList.remove('hidden');
   document.getElementById('piece-page').classList.remove('active');
@@ -424,28 +410,19 @@ function showCatalog(){
 
 function showPiece(id){
   const item = CATALOG.find(i => i.id === id);
-  if(!item){
-    // catalog still loading — queue the route
-    pendingRoute = id;
-    return;
-  }
+  if(!item){ pendingRoute = id; return; }
   document.getElementById('main').classList.add('hidden');
   document.getElementById('piece-page').classList.add('active');
-
   document.getElementById('piece-id').textContent   = item.id;
   document.getElementById('piece-name').textContent = item['name_'+lang];
   document.getElementById('piece-wood').textContent = '🪵 ' + item['wood_'+lang];
   document.getElementById('piece-desc').textContent = item['desc_'+lang] || '';
   const url = window.location.origin + '/piece/' + item.id;
   document.getElementById('piece-qr-url').textContent = url;
-
-  // main image
   const imgWrap = document.getElementById('piece-img-wrap');
   imgWrap.innerHTML = item.image
     ? `<img src="${item.image}" alt="${item['name_'+lang]}" onerror="this.parentElement.innerHTML='<div class=piece-img-placeholder>🪑</div>'"/>`
     : '<div class="piece-img-placeholder">🪑</div>';
-
-  // process gallery
   const gallery = document.getElementById('piece-gallery');
   const photos  = (item.process_images || []).filter(Boolean);
   if(photos.length){
@@ -463,35 +440,24 @@ function showPiece(id){
       : 'Las fotos del proceso aparecerán aquí una vez subidas desde el panel de administración.'
     }</em></div>`;
   }
-
-  // videos — multiple, YouTube or Drive
   const videoDiv = document.getElementById('piece-video');
   const videos = (item.process_videos && item.process_videos.length)
     ? item.process_videos
     : (item.video_url ? [{ url: item.video_url, label: '' }] : []);
-
   if(videos.length){
     videoDiv.innerHTML = '<div class="videos-section">' +
       videos.map(v => {
         const vurl   = v.url || v;
         const vlabel = v.label ? `<p class="video-label">${v.label}</p>` : '';
         const ytId   = getYouTubeId(vurl);
-        if(ytId) return `<div class="video-item">${vlabel}
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe>
-          </div></div>`;
-        if(getDriveId(vurl)) return `<div class="video-item">${vlabel}
-          <a class="drive-btn" href="${vurl}" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            ${lang==='en' ? 'Watch process video' : 'Ver video del proceso'}
-          </a></div>`;
+        if(ytId) return `<div class="video-item">${vlabel}<div class="video-embed"><iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe></div></div>`;
+        if(getDriveId(vurl)) return `<div class="video-item">${vlabel}<a class="drive-btn" href="${vurl}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>${lang==='en' ? 'Watch process video' : 'Ver video del proceso'}</a></div>`;
         return '';
       }).join('') +
     '</div>';
   } else {
     videoDiv.innerHTML = '';
   }
-
   window.scrollTo(0,0);
   history.pushState({},'','/piece/'+item.id);
   document.querySelectorAll('[data-en]').forEach(el=>{
@@ -511,9 +477,6 @@ function getDriveId(url){
   return m ? m[1] : null;
 }
 
-// ─────────────────────────────────────────────
-// COPY / QR
-// ─────────────────────────────────────────────
 function copyLink(){
   const url = document.getElementById('piece-qr-url').textContent;
   navigator.clipboard.writeText(url).then(()=>{
@@ -527,9 +490,6 @@ function openQRGenerator(){
   window.open('https://qr.io/?data='+url, '_blank');
 }
 
-// ─────────────────────────────────────────────
-// CATALOG RENDER
-// ─────────────────────────────────────────────
 let currentFilter = 'All';
 const CATS_EN = ['All','Dining Room','Living Room','Bedroom','Outdoor','Kitchen','Accessories'];
 const CATS_ES = ['Todos','Comedor','Sala','Recámara','Exterior','Cocina','Accesorios'];
@@ -558,9 +518,7 @@ function renderCatalog(filter){
   const grid  = document.getElementById('catalog-grid');
   const items = filter==='All' ? CATALOG : CATALOG.filter(i => i.category===filter);
   if(!items.length){
-    grid.innerHTML = `<div class="empty-state"><p>${lang==='en'
-      ? 'No pieces in this category yet.'
-      : 'No hay piezas en esta categoría aún.'}</p></div>`;
+    grid.innerHTML = `<div class="empty-state"><p>${lang==='en'?'No pieces in this category yet.':'No hay piezas en esta categoría aún.'}</p></div>`;
     return;
   }
   grid.innerHTML = '';
@@ -579,9 +537,7 @@ function renderCatalog(filter){
         ${item.image ? `<img src="${item.image}" alt="${name}" onerror="this.style.display='none'"/>` : ''}
         <div class="card-img-placeholder"><span>🪑</span><p>${item.id}</p></div>
         <span class="badge-unique">${uniqueLabel}</span>
-        ${item.sold
-          ? `<span class="badge-sold">${soldLabel}</span>`
-          : `<span class="badge-qr">▣ QR</span>`}
+        ${item.sold?`<span class="badge-sold">${soldLabel}</span>`:`<span class="badge-qr">▣ QR</span>`}
       </div>
       <div class="card-body">
         <div class="card-cat">${catLabel}</div>
@@ -597,7 +553,6 @@ function renderCatalog(filter){
   });
 }
 
-// QR decorative pattern
 function renderQRPattern(){
   const p = [1,1,1,0,1,1,1,1,0,0,0,0,1,0,1,0,1,1,1,0,1,1,0,1,0,0,0,0,1,0,1,1,1,1,1,0,0,0,1,1,0,0,1,1,1,0,0,0,1,0];
   const c = document.getElementById('qr-pat');
@@ -611,15 +566,14 @@ function renderQRPattern(){
   });
 }
 
-// URL routing for direct QR scan
 function handleRoute(){
   const path = window.location.pathname;
   const m    = path.match(/\/piece\/([A-Z0-9-]+)/i);
   if(m){
-    const id   = m[1].toUpperCase();
+    const id = m[1].toUpperCase();
     const item = CATALOG.find(i => i.id === id);
     if(item){ showPiece(id); return; }
-    else { pendingRoute = id; return; } // catalog still loading
+    else { pendingRoute = id; return; }
   }
   showCatalog();
 }
@@ -627,18 +581,6 @@ function handleRoute(){
 renderQRPattern();
 handleRoute();
 window.addEventListener('popstate', handleRoute);
-</script>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  if(window.netlifyIdentity){
-    window.netlifyIdentity.on("init", user => {
-      if(!user){
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
 </script>
 </body>
 </html>
