@@ -1,12 +1,9 @@
 backend:
   name: git-gateway
   branch: main
-
 media_folder: "images"
 public_folder: "/images"
-
 locale: "es"
-
 collections:
   - name: "muebles"
     label: "Muebles / Furniture"
@@ -21,17 +18,14 @@ collections:
         name: id
         widget: string
         hint: "Formato recomendado: ROH-001, ROH-002, etc. Debe ser único."
-
       - label: "Nombre en inglés"
         name: name_en
         widget: string
         hint: "Ej: Dining Table — Mesquite"
-
       - label: "Nombre en español"
         name: name_es
         widget: string
         hint: "Ej: Mesa de Comedor — Mezquite"
-
       - label: "Categoría"
         name: category
         widget: select
@@ -42,33 +36,27 @@ collections:
           - { label: "Outdoor / Exterior", value: "Outdoor" }
           - { label: "Kitchen / Cocina", value: "Kitchen" }
           - { label: "Accessories / Accesorios", value: "Accessories" }
-
       - label: "Madera (inglés)"
         name: wood_en
         widget: string
         hint: "Ej: Sonoran Mesquite, hand-selected"
-
       - label: "Madera (español)"
         name: wood_es
         widget: string
         hint: "Ej: Mezquite Sonorense, seleccionado a mano"
-
       - label: "Descripción corta (inglés)"
         name: desc_en
         widget: text
         required: false
         hint: "Opcional. Descripción breve del mueble."
-
       - label: "Descripción corta (español)"
         name: desc_es
         widget: text
         required: false
-
       - label: "Foto principal"
         name: image
         widget: image
         hint: "Foto del mueble terminado. Se sube directo desde tu celular o compu."
-
       - label: "Etapas de fabricación documentadas"
         name: stages
         widget: number
@@ -76,7 +64,6 @@ collections:
         value_type: int
         min: 1
         max: 12
-
       - label: "Fotos del proceso (galería)"
         name: process_images
         widget: list
@@ -86,18 +73,25 @@ collections:
           label: Foto
           name: image
           widget: image
-
-      - label: "Video del proceso (YouTube URL)"
-        name: video_url
-        widget: string
+      - label: "Videos del proceso"
+        name: process_videos
+        widget: list
         required: false
-        hint: "Pega aquí el link de YouTube del video del proceso. Ej: https://youtube.com/watch?v=..."
-
+        hint: "Agrega uno o varios links de video. Puedes usar YouTube o Google Drive."
+        fields:
+          - label: "URL del video"
+            name: url
+            widget: string
+            hint: "YouTube: https://youtube.com/watch?v=... — Drive: https://drive.google.com/file/d/..."
+          - label: "Descripción (opcional)"
+            name: label
+            widget: string
+            required: false
+            hint: "Ej: Corte de madera, Ensamble final..."
       - label: "Vendido"
         name: sold
         widget: boolean
         default: false
-
       - label: "Fecha de creación"
         name: date
         widget: datetime
