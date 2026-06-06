@@ -16,20 +16,14 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text)}
-
-/* LANG */
 .lang-toggle{position:fixed;top:1rem;right:1.2rem;z-index:200;display:flex;gap:2px;background:rgba(30,22,16,.6);backdrop-filter:blur(8px);border-radius:20px;padding:3px}
 .lang-btn{border:none;background:transparent;color:#B8874A;font-family:'Jost',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.1em;padding:.3rem .75rem;border-radius:16px;cursor:pointer;transition:all .2s}
 .lang-btn.active{background:var(--gold);color:var(--dark)}
-
-/* NAV */
 nav{position:sticky;top:0;z-index:100;background:var(--dark);display:flex;align-items:center;justify-content:space-between;padding:.95rem 2.5rem}
 .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;color:var(--cream);letter-spacing:.15em}
 .nav-links{display:flex;gap:2rem}
 .nav-links a{font-size:.78rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--cream)}
-
-/* HERO */
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:560px}
 .hero-text{background:var(--dark);padding:5rem 3.5rem;display:flex;flex-direction:column;justify-content:center}
 .hero-eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;font-weight:500}
@@ -45,26 +39,18 @@ nav{position:sticky;top:0;z-index:100;background:var(--dark);display:flex;align-
 .hero-pillar{display:flex;align-items:center;gap:.8rem;background:rgba(255,255,255,.04);border:.5px solid rgba(184,135,74,.15);border-radius:3px;padding:.65rem 1rem}
 .hero-pillar-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
 .hero-pillar-text{font-size:.8rem;color:rgba(214,180,130,.65);font-weight:300;letter-spacing:.03em}
-
-/* MANIFESTO */
 .manifesto{background:var(--gold);padding:1rem 2.5rem;display:flex;gap:2.5rem;overflow:hidden;align-items:center}
 .m-item{display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
 .m-dot{width:4px;height:4px;border-radius:50%;background:var(--dark);opacity:.4}
 .m-text{font-size:.76rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--dark)}
-
-/* SECTION */
 .section{padding:4rem 2.5rem}
 .sh{margin-bottom:2.5rem}
 .sh-eye{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;font-weight:500}
 .sh-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--text);line-height:1.2}
 .sh-rule{width:36px;height:1.5px;background:var(--gold);margin-top:.6rem}
-
-/* FILTERS */
 .filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
 .filter-btn{padding:.38rem 1rem;border:.5px solid var(--border);border-radius:20px;font-size:.75rem;font-weight:400;letter-spacing:.05em;background:transparent;cursor:pointer;color:var(--muted);transition:all .2s;font-family:'Jost',sans-serif}
 .filter-btn.active,.filter-btn:hover{background:var(--dark);color:var(--cream);border-color:var(--dark)}
-
-/* GRID */
 .catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.4rem}
 .card{background:var(--cream);border:.5px solid var(--border);border-radius:4px;overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s;position:relative}
 .card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(30,22,16,.13)}
@@ -85,12 +71,8 @@ nav{position:sticky;top:0;z-index:100;background:var(--dark);display:flex;align-
 .card-stages{font-size:.7rem;color:var(--muted)}
 .card-stages strong{color:var(--text)}
 .card-id{font-size:.65rem;color:var(--border);font-family:monospace}
-
-/* EMPTY STATE */
 .empty-state{grid-column:1/-1;text-align:center;padding:4rem 2rem;color:var(--muted)}
 .empty-state p{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic}
-
-/* PROCESS */
 .process-section{background:var(--dark);padding:4rem 2.5rem}
 .process-section .sh-eye,.process-section .sh-title{color:var(--cream)}
 .process-section .sh-title em{font-style:italic;color:var(--gold-light)}
@@ -102,8 +84,6 @@ nav{position:sticky;top:0;z-index:100;background:var(--dark);display:flex;align-
 .ps-icon{font-size:1.1rem;margin-bottom:.5rem}
 .ps-title{font-size:.85rem;font-weight:500;color:var(--cream);margin-bottom:.35rem}
 .ps-desc{font-size:.75rem;color:var(--stone);line-height:1.6;font-weight:300}
-
-/* QR SECTION */
 .qr-section{background:var(--mid);padding:4rem 2.5rem}
 .qr-inner{display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;max-width:860px;margin:0 auto}
 .qr-section .sh-eye,.qr-section .sh-title{color:var(--cream)}
@@ -119,19 +99,14 @@ nav{position:sticky;top:0;z-index:100;background:var(--dark);display:flex;align-
 .qr-label{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--text);text-align:center;line-height:1.3}
 .qr-sub{font-size:.63rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;text-align:center}
 .qr-url-text{font-size:.65rem;color:rgba(184,135,74,.45);font-family:monospace;text-align:center}
-
-/* FOOTER */
 footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--stone);letter-spacing:.12em}
 .footer-tagline{font-size:.78rem;color:rgba(184,135,74,.35);font-style:italic;font-family:'Cormorant Garamond',serif}
 .footer-info{font-size:.72rem;color:rgba(138,122,101,.4)}
-
-/* PIECE PAGE */
 .piece-page{display:none;min-height:100vh}
 .piece-page.active{display:block}
 .main-catalog{display:block}
 .main-catalog.hidden{display:none}
-
 .piece-hero{background:var(--dark);padding:3rem 2.5rem}
 .piece-back{display:inline-flex;align-items:center;gap:.5rem;color:var(--stone);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;margin-bottom:2rem;transition:color .2s;background:none;border:none;font-family:'Jost',sans-serif}
 .piece-back:hover{color:var(--gold)}
@@ -140,7 +115,6 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
 .piece-img-wrap{border-radius:4px;overflow:hidden;background:#3D2E1E;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center}
 .piece-img-wrap img{width:100%;height:100%;object-fit:cover}
 .piece-img-placeholder{font-size:4rem;opacity:.15;color:var(--cream)}
-.piece-info{}
 .piece-id{font-family:monospace;font-size:.7rem;color:rgba(184,135,74,.5);letter-spacing:.1em;margin-bottom:.5rem}
 .piece-name{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--cream);line-height:1.15;margin-bottom:1rem}
 .piece-wood{font-size:.88rem;color:var(--stone);margin-bottom:1.2rem}
@@ -154,18 +128,12 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
 .btn-qr{background:transparent;color:var(--gold);border:.5px solid rgba(184,135,74,.4);padding:.55rem 1.2rem;font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border-radius:3px;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s}
 .btn-qr:hover{border-color:var(--gold);background:rgba(184,135,74,.08)}
 .copy-msg{font-size:.72rem;color:var(--gold);margin-top:.4rem;display:none}
-
-/* PIECE PROCESS SECTION */
 .piece-process{padding:3rem 2.5rem;background:var(--bg)}
 .piece-process .sh{margin-bottom:2rem}
-
-/* PROCESS GALLERY — multiple photos */
 .process-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
 .process-photo{border-radius:4px;overflow:hidden;aspect-ratio:4/3;background:#E8DDD0;cursor:pointer;position:relative}
 .process-photo img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
 .process-photo:hover img{transform:scale(1.05)}
-
-/* LIGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(14,10,6,.92);align-items:center;justify-content:center;padding:1.5rem}
 .lightbox.open{display:flex}
 .lightbox-inner{position:relative;max-width:90vw;max-height:90vh}
@@ -176,35 +144,23 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
 .lightbox-prev{left:-3rem}
 .lightbox-next{right:-3rem}
 .lightbox-counter{position:absolute;bottom:-1.8rem;left:50%;transform:translateX(-50%);font-size:.7rem;color:var(--stone);letter-spacing:.1em}
-
-/* VIDEOS */
 .videos-section{margin-top:1.5rem}
 .video-item{margin-bottom:1.5rem}
 .video-label{font-size:.78rem;color:var(--muted);letter-spacing:.06em;margin-bottom:.5rem;font-style:italic;text-transform:uppercase}
-.video-wrap{}
 .video-embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:4px;background:#1E1610}
 .video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
 .drive-btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--gold);color:var(--dark);padding:.7rem 1.6rem;border-radius:3px;font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s}
 .drive-btn:hover{background:var(--gold-light)}
 .drive-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
-
 .no-process{padding:2rem;background:var(--cream);border:.5px solid var(--border);border-radius:4px;text-align:center;color:var(--muted);font-size:.85rem;font-style:italic}
-
 @media(max-width:768px){
-  .hero{grid-template-columns:1fr}
-  .hero-visual{display:none}
-  nav{padding:.8rem 1.2rem}
-  .nav-links{display:none}
+  .hero{grid-template-columns:1fr}.hero-visual{display:none}
+  nav{padding:.8rem 1.2rem}.nav-links{display:none}
   .section,.process-section,.qr-section{padding:2.5rem 1.2rem}
-  .hero-text{padding:3rem 1.5rem}
-  .hero-title{font-size:2.4rem}
-  .piece-layout{grid-template-columns:1fr}
-  .qr-inner{grid-template-columns:1fr}
-  .qr-mockup{display:none}
-  .piece-hero{padding:2rem 1.2rem}
-  .piece-process{padding:2rem 1.2rem}
-  .lightbox-prev{left:-.5rem}
-  .lightbox-next{right:-.5rem}
+  .hero-text{padding:3rem 1.5rem}.hero-title{font-size:2.4rem}
+  .piece-layout{grid-template-columns:1fr}.qr-inner{grid-template-columns:1fr}
+  .qr-mockup{display:none}.piece-hero{padding:2rem 1.2rem}.piece-process{padding:2rem 1.2rem}
+  .lightbox-prev{left:-.5rem}.lightbox-next{right:-.5rem}
 }
 </style>
 </head>
@@ -382,27 +338,26 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
 
 <script>
 // ─────────────────────────────────────────────
-// CATALOG DATA
+// CATALOG — loaded from catalog.json (generated
+// by build.js at deploy time via Netlify)
 // ─────────────────────────────────────────────
-const CATALOG = window.CATALOG_DATA || [
-  {
-    id:"ROH-001",
-    name_en:"CANYON BLOCK COLLECTION - Pyramid Base Set of 3",
-    name_es:"CANYON BLOCK COLLECTION - Pyramid Base Set of 3",
-    category:"Living Room",
-    wood_en:"MESQUITE",
-    wood_es:"MEZQUITE",
-    desc_en:"Handcrafted from premium mesquite wood and accented with genuine turquoise inlays, this collection blends natural beauty with contemporary design. Thick solid tops and sculptural pyramid bases create a bold statement while showcasing the unique character of the wood. Coffee Table: 69\" x 60\" x 20\"H, featuring a 4\" thick top with turquoise inlays. End Tables: 24\" x 24\" x 26\"H, featuring 3\" thick tops with turquoise inlays. Each piece is one of a kind, handcrafted to bring warmth, character, and timeless luxury to any interior.",
-    desc_es:"Elaborada artesanalmente con madera premium de mezquite y acentuada con incrustaciones de turquesa genuina, esta colección combina la belleza natural con un diseño contemporáneo. Sus gruesas cubiertas de madera sólida y sus escultóricas bases piramidales crean una presencia imponente, resaltando al mismo tiempo el carácter único de la madera. Mesa de Centro: 69\" x 60\" x 20\" de altura, con una cubierta de 4\" de espesor e incrustaciones de turquesa. Mesas Laterales: 24\" x 24\" x 26\" de altura, con cubiertas de 3\" de espesor e incrustaciones de turquesa. Cada pieza es única e irrepetible, elaborada artesanalmente para aportar calidez, personalidad y lujo atemporal a cualquier espacio interior.",
-    image:"/images/whatsapp-image-2026-06-03-at-8.31.22-am.jpeg",
-    stages:6,
-    process_images:[],
-    process_videos:[
-      { url:"https://drive.google.com/file/d/1MPBnx2mCOj-sLjZeOE5oTaGH_0JhsB7m/view?usp=drive_link", label:"" }
-    ],
-    sold:false
-  }
-];
+let CATALOG = [];
+let pendingRoute = null;
+
+fetch('/catalog.json')
+  .then(r => r.ok ? r.json() : Promise.reject('not found'))
+  .then(data => {
+    CATALOG = data;
+    renderFilters();
+    renderCatalog(currentFilter);
+    if(pendingRoute) { showPiece(pendingRoute); pendingRoute = null; }
+  })
+  .catch(() => {
+    // fallback while build script is not yet set up
+    console.warn('catalog.json not found — using empty catalog');
+    renderFilters();
+    renderCatalog(currentFilter);
+  });
 
 // ─────────────────────────────────────────────
 // LIGHTBOX
@@ -433,12 +388,12 @@ function updateLightbox(){
   document.getElementById('lightbox-counter').textContent =
     lightboxImages.length > 1 ? (lightboxIndex+1) + ' / ' + lightboxImages.length : '';
 }
-document.addEventListener('keydown', e=>{
+document.addEventListener('keydown', e => {
   const lb = document.getElementById('lightbox');
   if(!lb.classList.contains('open')) return;
-  if(e.key==='Escape') closeLightboxDirect();
-  if(e.key==='ArrowRight') lightboxNav(1);
-  if(e.key==='ArrowLeft')  lightboxNav(-1);
+  if(e.key==='Escape')      closeLightboxDirect();
+  if(e.key==='ArrowRight')  lightboxNav(1);
+  if(e.key==='ArrowLeft')   lightboxNav(-1);
 });
 
 // ─────────────────────────────────────────────
@@ -453,7 +408,8 @@ function setLang(l){
     const val = el.getAttribute('data-'+l);
     if(val) el.innerHTML = val;
   });
-  renderFilters(); renderCatalog(currentFilter);
+  renderFilters();
+  renderCatalog(currentFilter);
 }
 
 // ─────────────────────────────────────────────
@@ -467,13 +423,15 @@ function showCatalog(){
 }
 
 function showPiece(id){
-  const item = CATALOG.find(i=>i.id===id);
-  if(!item) return;
+  const item = CATALOG.find(i => i.id === id);
+  if(!item){
+    // catalog still loading — queue the route
+    pendingRoute = id;
+    return;
+  }
   document.getElementById('main').classList.add('hidden');
-  const pp = document.getElementById('piece-page');
-  pp.classList.add('active');
+  document.getElementById('piece-page').classList.add('active');
 
-  // basic info
   document.getElementById('piece-id').textContent   = item.id;
   document.getElementById('piece-name').textContent = item['name_'+lang];
   document.getElementById('piece-wood').textContent = '🪵 ' + item['wood_'+lang];
@@ -483,23 +441,22 @@ function showPiece(id){
 
   // main image
   const imgWrap = document.getElementById('piece-img-wrap');
-  if(item.image){
-    imgWrap.innerHTML = `<img src="${item.image}" alt="${item['name_'+lang]}" onerror="this.parentElement.innerHTML='<div class=piece-img-placeholder>🪑</div>'"/>`;
-  } else {
-    imgWrap.innerHTML = '<div class="piece-img-placeholder">🪑</div>';
-  }
+  imgWrap.innerHTML = item.image
+    ? `<img src="${item.image}" alt="${item['name_'+lang]}" onerror="this.parentElement.innerHTML='<div class=piece-img-placeholder>🪑</div>'"/>`
+    : '<div class="piece-img-placeholder">🪑</div>';
 
-  // process gallery — multiple photos with lightbox
+  // process gallery
   const gallery = document.getElementById('piece-gallery');
-  const photos = (item.process_images || []).map(img => img.image || img).filter(Boolean);
+  const photos  = (item.process_images || []).filter(Boolean);
   if(photos.length){
+    const photosJSON = JSON.stringify(photos).replace(/"/g, '&quot;');
     gallery.innerHTML = '<div class="process-gallery">' +
       photos.map((src, idx) =>
-        `<div class="process-photo" onclick="openLightbox(${JSON.stringify(photos).replace(/"/g,'&quot;')}, ${idx})">
+        `<div class="process-photo" onclick="openLightbox(JSON.parse(this.dataset.photos), ${idx})" data-photos="${photosJSON}">
            <img src="${src}" alt="Proceso ${idx+1}" loading="lazy"/>
          </div>`
       ).join('') +
-      '</div>';
+    '</div>';
   } else {
     gallery.innerHTML = `<div class="no-process"><em>${lang==='en'
       ? 'Process photos will appear here once uploaded from the admin panel.'
@@ -509,34 +466,25 @@ function showPiece(id){
 
   // videos — multiple, YouTube or Drive
   const videoDiv = document.getElementById('piece-video');
-  // backward-compat: support old single video_url field
-  const videos = item.process_videos && item.process_videos.length
+  const videos = (item.process_videos && item.process_videos.length)
     ? item.process_videos
     : (item.video_url ? [{ url: item.video_url, label: '' }] : []);
 
   if(videos.length){
     videoDiv.innerHTML = '<div class="videos-section">' +
       videos.map(v => {
-        const vurl  = v.url || v;
+        const vurl   = v.url || v;
         const vlabel = v.label ? `<p class="video-label">${v.label}</p>` : '';
-        const ytId  = getYouTubeId(vurl);
-        if(ytId){
-          return `<div class="video-item">${vlabel}
-            <div class="video-wrap"><div class="video-embed">
-              <iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe>
-            </div></div>
-          </div>`;
-        }
-        if(getDriveId(vurl)){
-          return `<div class="video-item">${vlabel}
-            <a class="drive-btn" href="${vurl}" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-              ${lang==='en' ? 'Watch process video' : 'Ver video del proceso'}
-            </a>
-          </div>`;
-        }
+        const ytId   = getYouTubeId(vurl);
+        if(ytId) return `<div class="video-item">${vlabel}
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/${ytId}" allowfullscreen></iframe>
+          </div></div>`;
+        if(getDriveId(vurl)) return `<div class="video-item">${vlabel}
+          <a class="drive-btn" href="${vurl}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            ${lang==='en' ? 'Watch process video' : 'Ver video del proceso'}
+          </a></div>`;
         return '';
       }).join('') +
     '</div>';
@@ -564,14 +512,14 @@ function getDriveId(url){
 }
 
 // ─────────────────────────────────────────────
-// COPY LINK
+// COPY / QR
 // ─────────────────────────────────────────────
 function copyLink(){
   const url = document.getElementById('piece-qr-url').textContent;
   navigator.clipboard.writeText(url).then(()=>{
     const msg = document.getElementById('copy-msg');
-    msg.style.display='block';
-    setTimeout(()=>msg.style.display='none', 2500);
+    msg.style.display = 'block';
+    setTimeout(()=> msg.style.display='none', 2500);
   });
 }
 function openQRGenerator(){
@@ -587,18 +535,18 @@ const CATS_EN = ['All','Dining Room','Living Room','Bedroom','Outdoor','Kitchen'
 const CATS_ES = ['Todos','Comedor','Sala','Recámara','Exterior','Cocina','Accesorios'];
 
 function renderFilters(){
-  const bar = document.getElementById('filter-bar');
-  const existing = new Set(CATALOG.map(i=>i.category));
-  const labels = CATS_EN.filter(c=>c==='All'||existing.has(c));
-  bar.innerHTML = '';
-  labels.forEach(cat=>{
+  const bar      = document.getElementById('filter-bar');
+  const existing = new Set(CATALOG.map(i => i.category));
+  const labels   = CATS_EN.filter(c => c==='All' || existing.has(c));
+  bar.innerHTML  = '';
+  labels.forEach(cat => {
     const idx = CATS_EN.indexOf(cat);
     const btn = document.createElement('button');
-    btn.className = 'filter-btn' + (cat===currentFilter?' active':'');
+    btn.className   = 'filter-btn' + (cat===currentFilter ? ' active' : '');
     btn.textContent = lang==='en' ? cat : CATS_ES[idx];
-    btn.addEventListener('click',()=>{
+    btn.addEventListener('click', () => {
       currentFilter = cat;
-      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderCatalog(cat);
     });
@@ -608,17 +556,19 @@ function renderFilters(){
 
 function renderCatalog(filter){
   const grid  = document.getElementById('catalog-grid');
-  const items = filter==='All' ? CATALOG : CATALOG.filter(i=>i.category===filter);
+  const items = filter==='All' ? CATALOG : CATALOG.filter(i => i.category===filter);
   if(!items.length){
-    grid.innerHTML = `<div class="empty-state"><p>${lang==='en'?'No pieces in this category yet.':'No hay piezas en esta categoría aún.'}</p></div>`;
+    grid.innerHTML = `<div class="empty-state"><p>${lang==='en'
+      ? 'No pieces in this category yet.'
+      : 'No hay piezas en esta categoría aún.'}</p></div>`;
     return;
   }
   grid.innerHTML = '';
-  items.forEach(item=>{
-    const name      = item['name_'+lang];
-    const wood      = item['wood_'+lang];
-    const catIdx    = CATS_EN.indexOf(item.category);
-    const catLabel  = lang==='en' ? item.category : (CATS_ES[catIdx]||item.category);
+  items.forEach(item => {
+    const name        = item['name_'+lang];
+    const wood        = item['wood_'+lang];
+    const catIdx      = CATS_EN.indexOf(item.category);
+    const catLabel    = lang==='en' ? item.category : (CATS_ES[catIdx]||item.category);
     const uniqueLabel = lang==='en' ? 'One of a kind' : 'Pieza única';
     const stagesLabel = lang==='en' ? 'stages' : 'etapas';
     const soldLabel   = lang==='en' ? 'SOLD' : 'VENDIDO';
@@ -642,43 +592,47 @@ function renderCatalog(filter){
           <span class="card-id">${item.id}</span>
         </div>
       </div>`;
-    if(!item.sold) card.addEventListener('click',()=>showPiece(item.id));
+    if(!item.sold) card.addEventListener('click', () => showPiece(item.id));
     grid.appendChild(card);
   });
 }
 
 // QR decorative pattern
 function renderQRPattern(){
-  const p=[1,1,1,0,1,1,1,1,0,0,0,0,1,0,1,0,1,1,1,0,1,1,0,1,0,0,0,0,1,0,1,1,1,1,1,0,0,0,1,1,0,0,1,1,1,0,0,0,1,0];
+  const p = [1,1,1,0,1,1,1,1,0,0,0,0,1,0,1,0,1,1,1,0,1,1,0,1,0,0,0,0,1,0,1,1,1,1,1,0,0,0,1,1,0,0,1,1,1,0,0,0,1,0];
   const c = document.getElementById('qr-pat');
   if(!c) return;
-  c.innerHTML='';
-  p.forEach(v=>{const d=document.createElement('div');d.className='qr-cell';d.style.background=v?'#1E1610':'transparent';c.appendChild(d);});
+  c.innerHTML = '';
+  p.forEach(v => {
+    const d = document.createElement('div');
+    d.className = 'qr-cell';
+    d.style.background = v ? '#1E1610' : 'transparent';
+    c.appendChild(d);
+  });
 }
 
-// Handle URL routing for direct QR scan
+// URL routing for direct QR scan
 function handleRoute(){
   const path = window.location.pathname;
-  const m = path.match(/\/piece\/([A-Z0-9-]+)/);
+  const m    = path.match(/\/piece\/([A-Z0-9-]+)/i);
   if(m){
-    const item = CATALOG.find(i=>i.id===m[1]);
-    if(item){ showPiece(m[1]); return; }
+    const id   = m[1].toUpperCase();
+    const item = CATALOG.find(i => i.id === id);
+    if(item){ showPiece(id); return; }
+    else { pendingRoute = id; return; } // catalog still loading
   }
   showCatalog();
 }
 
-// INIT
 renderQRPattern();
-renderFilters();
-renderCatalog('All');
 handleRoute();
 window.addEventListener('popstate', handleRoute);
 </script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
-  if (window.netlifyIdentity) {
+  if(window.netlifyIdentity){
     window.netlifyIdentity.on("init", user => {
-      if (!user) {
+      if(!user){
         window.netlifyIdentity.on("login", () => {
           document.location.href = "/admin/";
         });
