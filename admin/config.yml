@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: jcuevasc1/rohma-catalog
   branch: main
+  base_url: https://rohma-oauth.cuevas-pablo.workers.dev
+  auth_endpoint: /auth
 media_folder: "images"
 public_folder: "/images"
 locale: "es"
