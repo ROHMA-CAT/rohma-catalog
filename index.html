@@ -39,7 +39,9 @@ nav{position:sticky;top:0;z-index:100;background:var(--dark);display:flex;align-
 .hero-pillar{display:flex;align-items:center;gap:.8rem;background:rgba(255,255,255,.04);border:.5px solid rgba(184,135,74,.15);border-radius:3px;padding:.65rem 1rem}
 .hero-pillar-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
 .hero-pillar-text{font-size:.8rem;color:rgba(214,180,130,.65);font-weight:300;letter-spacing:.03em}
-.manifesto{background:var(--gold);padding:1rem 2.5rem;display:flex;gap:2.5rem;overflow:hidden;align-items:center}
+.manifesto{background:var(--gold);padding:1rem 0;overflow:hidden;align-items:center;white-space:nowrap}
+.manifesto-track{display:inline-flex;gap:2.5rem;animation:ticker 25s linear infinite}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .m-item{display:flex;align-items:center;gap:.5rem;white-space:nowrap;flex-shrink:0}
 .m-dot{width:4px;height:4px;border-radius:50%;background:var(--dark);opacity:.4}
 .m-text{font-size:.76rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--dark)}
@@ -205,21 +207,32 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
   </div>
 
   <div class="manifesto">
-    <div class="m-item"><span class="m-text" data-en="Handmade" data-es="Hecho a mano">Handmade</span></div>
-    <div class="m-dot"></div>
-    <div class="m-item"><span class="m-text" data-en="One of a kind" data-es="Pieza única">One of a kind</span></div>
-    <div class="m-dot"></div>
-    <div class="m-item"><span class="m-text" data-en="Solid mesquite wood" data-es="Solo mezquite macizo">Solid mesquite wood</span></div>
-    <div class="m-dot"></div>
-    <div class="m-item"><span class="m-text" data-en="Full process documented" data-es="Proceso documentado">Full process documented</span></div>
-    <div class="m-dot"></div>
-    <div class="m-item"><span class="m-text" data-en="Crafted in Sonora" data-es="Fabricado en Sonora">Crafted in Sonora</span></div>
-    <div class="m-dot"></div>
-    <div class="m-item"><span class="m-text" data-en="Built to last" data-es="Para generaciones">Built to last</span></div>
-    <div class="m-dot"></div>
-    <div class="m-item"><span class="m-text" data-en="Handmade" data-es="Hecho a mano">Handmade</span></div>
-    <div class="m-dot"></div>
-    <div class="m-item"><span class="m-text" data-en="One of a kind" data-es="Pieza única">One of a kind</span></div>
+    <div class="manifesto-track">
+      <div class="m-item"><span class="m-text" data-en="Handmade" data-es="Hecho a mano">Handmade</span></div>
+      <div class="m-dot"></div>
+      <div class="m-item"><span class="m-text" data-en="One of a kind" data-es="Pieza única">One of a kind</span></div>
+      <div class="m-dot"></div>
+      <div class="m-item"><span class="m-text" data-en="Solid mesquite wood" data-es="Solo mezquite macizo">Solid mesquite wood</span></div>
+      <div class="m-dot"></div>
+      <div class="m-item"><span class="m-text" data-en="Full process documented" data-es="Proceso documentado">Full process documented</span></div>
+      <div class="m-dot"></div>
+      <div class="m-item"><span class="m-text" data-en="Crafted in Sonora" data-es="Fabricado en Sonora">Crafted in Sonora</span></div>
+      <div class="m-dot"></div>
+      <div class="m-item"><span class="m-text" data-en="Built to last" data-es="Para generaciones">Built to last</span></div>
+      <div class="m-dot"></div>
+      <div class="m-item"><span class="m-text" data-en="Handmade" data-es="Hecho a mano">Handmade</span></div>
+      <div class="m-dot"></div>
+      <div class="m-item"><span class="m-text" data-en="One of a kind" data-es="Pieza única">One of a kind</span></div>
+      <div class="m-dot"></div>
+      <div class="m-item"><span class="m-text" data-en="Solid mesquite wood" data-es="Solo mezquite macizo">Solid mesquite wood</span></div>
+      <div class="m-dot"></div>
+      <div class="m-item"><span class="m-text" data-en="Full process documented" data-es="Proceso documentado">Full process documented</span></div>
+      <div class="m-dot"></div>
+      <div class="m-item"><span class="m-text" data-en="Crafted in Sonora" data-es="Fabricado en Sonora">Crafted in Sonora</span></div>
+      <div class="m-dot"></div>
+      <div class="m-item"><span class="m-text" data-en="Built to last" data-es="Para generaciones">Built to last</span></div>
+      <div class="m-dot"></div>
+    </div>
   </div>
 
   <section class="section" id="catalog">
