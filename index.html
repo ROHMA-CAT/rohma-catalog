@@ -144,6 +144,11 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
 .drive-btn:hover{background:var(--gold-light)}
 .drive-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
 .no-process{padding:2rem;background:var(--cream);border:.5px solid var(--border);border-radius:4px;text-align:center;color:var(--muted);font-size:.85rem;font-style:italic}
+.piece-label-card{background:var(--cream);border:.5px solid var(--border);border-radius:6px;padding:1.6rem 1.4rem;display:flex;flex-direction:column;align-items:flex-start;gap:.5rem;max-width:260px}
+.piece-label-id{font-family:monospace;font-size:.7rem;color:var(--gold);letter-spacing:.15em;font-weight:500;text-transform:uppercase}
+.piece-label-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--text);line-height:1.25}
+.piece-label-wood{font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:.4rem}
+.piece-label-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
 @media(max-width:768px){
   .hero{grid-template-columns:1fr}.hero-visual{display:none}
   nav{padding:.8rem 1.2rem}.nav-links{display:none}
@@ -304,6 +309,11 @@ footer{background:#120E09;padding:2rem 2.5rem;display:flex;align-items:center;ju
         <h1 class="piece-name" id="piece-name"></h1>
         <p class="piece-wood" id="piece-wood"></p>
         <p class="piece-desc" id="piece-desc"></p>
+        <div class="piece-label-card" id="piece-label-card">
+          <div class="piece-label-id" id="piece-label-id-text"></div>
+          <div class="piece-label-name" id="piece-label-name-text"></div>
+          <div class="piece-label-wood"><div class="piece-label-dot"></div><span id="piece-label-wood-text"></span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -399,6 +409,9 @@ function showPiece(id){
   document.getElementById('piece-name').textContent = item['name_'+lang];
   document.getElementById('piece-wood').textContent = '🪵 ' + item['wood_'+lang];
   document.getElementById('piece-desc').textContent = item['desc_'+lang] || '';
+  document.getElementById('piece-label-id-text').textContent = item.id;
+  document.getElementById('piece-label-name-text').textContent = item['name_'+lang];
+  document.getElementById('piece-label-wood-text').textContent = item['wood_'+lang];
   const imgWrap = document.getElementById('piece-img-wrap');
   imgWrap.innerHTML = item.image
     ? `<img src="${item.image}" alt="${item['name_'+lang]}" onerror="this.parentElement.innerHTML='<div class=piece-img-placeholder>🪑</div>'"/>`
